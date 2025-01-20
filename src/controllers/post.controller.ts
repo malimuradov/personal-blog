@@ -9,7 +9,6 @@ interface AuthRequest extends Request {
   user?: any;
 }
 
-// Настройка multer для загрузки файлов
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -46,7 +45,7 @@ export const createPost = async (req: AuthRequest, res: Response): Promise<void>
         title,
         content,
         userId,
-        mediaUrl: req.file ? `http://localhost:3000/uploads/${req.file.filename}` : undefined,
+        mediaUrl: req.file ? `/uploads/${req.file.filename}` : undefined,
       });
 
       res.status(201).json(post);
@@ -115,7 +114,7 @@ export const deletePost = async (req: AuthRequest, res: Response): Promise<void>
       return;
     }
 
-    if (post.mediaUrl) {
+    if (post.mediaUrl) { // check after deployed
       const filePath = path.join(__dirname, '..', '..', post.mediaUrl.replace('http://localhost:3000', ''));
       fs.unlink(filePath, (err) => {
         if (err) {

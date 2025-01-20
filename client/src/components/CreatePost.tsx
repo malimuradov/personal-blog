@@ -22,7 +22,7 @@ const CreatePost: React.FC = () => {
 
     try {
       console.log('Sending request with formData:', Object.fromEntries(formData));
-      await axios.post('http://localhost:3000/api/posts', formData, {
+      await axios.post('/api/posts', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`

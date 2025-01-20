@@ -14,7 +14,7 @@ const EditPost: React.FC = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/posts/${id}`, {
+        const response = await axios.get(`/api/posts/${id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         setTitle(response.data.title);
@@ -29,7 +29,7 @@ const EditPost: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:3000/api/posts/${id}`, { title, content }, {
+      await axios.patch(`/api/posts/${id}`, { title, content }, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       navigate('/');

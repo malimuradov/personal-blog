@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { Collapse, Tooltip } from 'bootstrap';
 
 const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
+
+  useEffect(() => {
+    // Initialize all Bootstrap tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(tooltipTriggerEl => new Tooltip(tooltipTriggerEl));
+
+    // Initialize the collapse functionality
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    if (navbarToggler && navbarCollapse) {
+      navbarToggler.addEventListener('click', () => {
+        const bsCollapse = new Collapse(navbarCollapse, {
+          toggle: true
+        });
+      });
+    }
+  }, []);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">

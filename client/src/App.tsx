@@ -10,6 +10,7 @@ import MyPosts from './components/MyPosts';
 import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './App.css';
 
 const App: React.FC = () => {

@@ -115,7 +115,7 @@ export const deletePost = async (req: AuthRequest, res: Response): Promise<void>
     }
 
     if (post.mediaUrl) { // check after deployed
-      const filePath = path.join(__dirname, '..', '..', post.mediaUrl.replace('http://localhost:3000', ''));
+      const filePath = path.join(__dirname, '..', '..', post.mediaUrl.replace('/uploads/', 'uploads/'));
       fs.unlink(filePath, (err) => {
         if (err) {
           console.error('Error deleting file:', err);

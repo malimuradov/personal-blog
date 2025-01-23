@@ -3,3 +3,4 @@ dist/
 .env
 client/build/
 client/node_modules/
+uploads/*
